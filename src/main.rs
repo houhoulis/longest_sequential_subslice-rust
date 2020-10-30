@@ -1,26 +1,28 @@
 fn main(s: &[u8]) -> &[u8] {
     if s.len() < 2 { return s; }
 
-    let mut start: usize = 0;
-    let mut sub: &[u8] = &s[0..1];
-    let mut last = sub[0];
-    let mut result = sub;
+    let mut current_start: usize = 0;
+    let mut current_end: usize   = 0;
+    let mut result_start = current_start;
+    let mut result_end   = current_end;
+    let mut previous_element = s[current_end];
 
     let with_indices = s.iter().enumerate();
     for (index, element) in with_indices.skip(1) {
-        if last < std::u8::MAX && last + 1 == *element {
-            last = *element;
-            sub = &s[start..(index + 1)];
-            if sub.len() > result.len() {
-                result = sub;
+        if previous_element < std::u8::MAX && previous_element + 1 == *element {
+            previous_element = *element;
+            current_end = index;
+            if current_end - current_start > result_end - result_start {
+                result_start = current_start;
+                result_end = current_end;
             }
         } else {
-            start = index;
-            sub = &s[start..(start+1)];
-            last = sub[0];
+            previous_element = *element;
+            current_start = index;
+            current_end = current_start;
         }
     }
-    result
+    &s[result_start..=result_end]
 }
 
 // These three lines are to inform rust (cargo) that there are tests:

@@ -12,4 +12,4 @@ This little project is a binary crate, but I wrote tests for it. This repo is ju
 >
 > We hope that you will participate in both languages that you barely know and languages that you know well.
 
-The research project is [live](https://research.exercism.io/), as of right now (Oct 29, 2020), should you be inclined.
+The research project is [live](https://research.exercism.io/experiments/1), as of right now (Oct 30, 2020), should you be inclined.

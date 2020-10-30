@@ -1,6 +1,21 @@
 use super::{ main, forty_two };
 
 #[test]
+fn returns_empty_array() {
+    let empty: [u8; 0] = [];
+    let result: [u8; 0] = [];
+    assert_eq!(&result, main(&empty));
+}
+
+#[test]
+fn returns_first_element_if_no_sequence() {
+    assert_eq!(
+        &[1],
+        main(&[1, 3, 5, 7, 5, 3])
+    );
+}
+
+#[test]
 fn it_finds_one_element() {
     assert_eq!(&[2], main(&[2]));
 }
